@@ -6,6 +6,7 @@ from system_hotkey import SystemHotkey
 
 import argparseqt.gui
 import argparseqt.groupingTools
+import argparseqt.typeHelpers
 
 def getAssetPath(resource):
 	return pkg_resources.resource_filename(__name__, 'assets/' + resource)
@@ -50,15 +51,15 @@ class LineWindow(QtWidgets.QWidget):
 		self.parser.add_argument('--height', type=int, default=20, help='Line height')
 		self.parser.add_argument('--offset', type=int, default=0, help='Line offset')
 
-		self.parser.add_argument('--red', type=int, default=255, help='Red value (0-255)')
-		self.parser.add_argument('--green', type=int, default=128, help='Green value (0-255)')
-		self.parser.add_argument('--blue', type=int, default=1, help='Blue value (0-255)')
-		self.parser.add_argument('--alpha', type=int, default=32, help='Alpha value (0-255)')
+		self.parser.add_argument('--color', type=argparseqt.typeHelpers.rgba, default='ff800020', help='Color')
 
 		self.settings = argparseqt.groupingTools.parseIntoGroups(self.parser)
 		self.dialog = argparseqt.gui.ArgDialog(self.parser, '👓 Line Reader Settings')
 		self.dialog.setValues(self.settings)
+
+		self.dialog.valueAdjusted.connect(self.onValueAdjusted)
 		self.dialog.accepted.connect(self.onSettingsAccepted)
+		self.dialog.rejected.connect(self.onSettingsRejected)
 
 	def buildTrayIcon(self):
 		self.trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(getAssetPath('icon.png')), self)
@@ -75,19 +76,36 @@ class LineWindow(QtWidgets.QWidget):
 
 		self.trayIcon.setContextMenu(self.trayMenu)
 
-	def onSettingsAccepted(self):
+	def onValueAdjusted(self):
 		self.settings = self.dialog.getValues()
+		self.update()
+
+	def onSettingsAccepted(self):
+		# TODO: save setings for persistance
+		self.settings = self.dialog.getValues()
+		self.update()
+
+	def onSettingsRejected(self):
+		self.settings = self.preservedSettings
 		self.update()
 
 	def onHotkeyTriggered(self):
 		self.toggle()
 
-	def onTrayIconActivated(self):
-		self.toggle()
+	def onTrayIconActivated(self, reason):
+		if reason in [QtWidgets.QSystemTrayIcon.DoubleClick, QtWidgets.QSystemTrayIcon.MiddleClick]:
+			self.showDialog()
+		else:
+			self.toggle()
+
+	def showDialog(self):
+		self.preservedSettings = self.settings
+		self.dialog.setValues(self.settings)
+		self.dialog.show()
 
 	def onActionTriggered(self, action):
 		if action.text() == 'Options...':
-			self.dialog.show()
+			self.showDialog()
 		elif action.text() == 'Exit':
 			QtWidgets.QApplication.instance().exit()
 		elif action.text() == 'Toggle':
@@ -121,12 +139,7 @@ class LineWindow(QtWidgets.QWidget):
 				self.mouseLocation.y() + self.settings['offset'] - self.settings['height']/2,
 				self.width(),
 				self.settings['height'],
-				QtGui.QColor(
-					self.settings['red'],
-					self.settings['green'],
-					self.settings['blue'],
-					self.settings['alpha']
-				)
+				QtGui.QColor(*self.settings['color']),
 			)
 
 app = QtWidgets.QApplication()

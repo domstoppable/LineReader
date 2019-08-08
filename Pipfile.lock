@@ -18,11 +18,11 @@
     "default": {
         "argparseqt": {
             "hashes": [
-                "sha256:1eac4cb3a6bd2c424d86b454ed2306baf29a035f4016cd7e7f349b1de1169a4c",
-                "sha256:706ff125e8f983699698876b10cee51391d336f0d18d1969ce54e40d54605702"
+                "sha256:1bf43cc8c2f279e0c433808eb1aa774fbe8f879837c2b191f9df935ca4a50336",
+                "sha256:5ac98b7780f08e23f81cce64a3f0a05971e17f66479ded496d470aef3912a625"
             ],
             "index": "pypi",
-            "version": "==0.2.3"
+            "version": "==0.2.4"
         },
         "cffi": {
             "hashes": [
