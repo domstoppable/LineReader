@@ -10,6 +10,7 @@ pyside2 = "*"
 system-hotkey = "*"
 xcffib = "*"
 xpybutil = "*"
+argparseqt = "*"
 
 [requires]
 python_version = "3.7"

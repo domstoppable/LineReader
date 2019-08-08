@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "681a789ea94209acf64296c50d2ca0a9d19b22387d6e7e6fc95aaaff13f32690"
+            "sha256": "0adbbe111cba947bd8671f9446bae4b76d130acda17bca09f9ebc4e065e59ab7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,14 @@
         ]
     },
     "default": {
+        "argparseqt": {
+            "hashes": [
+                "sha256:1eac4cb3a6bd2c424d86b454ed2306baf29a035f4016cd7e7f349b1de1169a4c",
+                "sha256:706ff125e8f983699698876b10cee51391d336f0d18d1969ce54e40d54605702"
+            ],
+            "index": "pypi",
+            "version": "==0.2.3"
+        },
         "cffi": {
             "hashes": [
                 "sha256:041c81822e9f84b1d9c401182e174996f0bae9991f33725d059b771744290774",
@@ -66,6 +74,13 @@
             ],
             "index": "pypi",
             "version": "==5.13.0"
+        },
+        "qtpy": {
+            "hashes": [
+                "sha256:2db72c44b55d0fe1407be8fba35c838ad0d6d3bb81f23007886dc1fc0f459c8d",
+                "sha256:fa0b8363b363e89b2a6f49eddc162a04c0699ae95e109a6be3bb145a913190ea"
+            ],
+            "version": "==1.9.0"
         },
         "shiboken2": {
             "hashes": [
