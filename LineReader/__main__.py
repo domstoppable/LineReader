@@ -3,10 +3,10 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class LineWindow(QtWidgets.QWidget):
 	def __init__(self, parent=None):
 		super().__init__(parent)
-		
+
 		self.setWindowFlags(self.windowFlags() | QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+		self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowTransparentForInput | QtCore.Qt.X11BypassWindowManagerHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-		self.setAttribute(QtCore.Qt.WA_TransparentForMouseEvents, True)
 
 		self.mouseLocation = None
 
