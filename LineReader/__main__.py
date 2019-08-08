@@ -41,7 +41,7 @@ class LineWindow(QtWidgets.QWidget):
 		self.hotkeyManager.triggered.connect(self.onHotkeyTriggered)
 
 		self.timer = QtCore.QTimer()
-		self.timer.setInterval(16)
+		self.timer.setInterval(33)
 		self.timer.timeout.connect(self._poll)
 
 	def parseArgs(self):
