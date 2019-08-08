@@ -28,7 +28,7 @@ class LineWindow(QtWidgets.QWidget):
 
 		self.parseArgs()
 
-		self.setWindowFlags(self.windowFlags() | QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+		self.setWindowFlags(self.windowFlags() | QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.Tool)
 		self.setWindowFlags(self.windowFlags() | QtCore.Qt.WindowTransparentForInput | QtCore.Qt.X11BypassWindowManagerHint)
 		self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
