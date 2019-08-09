@@ -11,6 +11,7 @@ system-hotkey = "*"
 xcffib = "*"
 xpybutil = "*"
 argparseqt = "*"
+"pypiwin32" = {version = "*", sys_platform = "== 'win32'"}
 
 [requires]
 python_version = "3.7"
