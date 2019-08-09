@@ -143,6 +143,7 @@ class LineWindow(QtWidgets.QWidget):
 			)
 
 app = QtWidgets.QApplication()
+app.setQuitOnLastWindowClosed(False)
 window = LineWindow()
 window.enable()
 app.exec_()
